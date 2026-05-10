@@ -1,40 +1,114 @@
-//Importation de Supabase
-import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <title>Accueil </title>
+        <link rel="stylesheet" href="CSS/styles.css">
+    </head>
+
+    <body>
+
+        <header class="siteHeader">
+            <h1>Mon site d'authentification</h1>
+            <nav class="topMenu">
+                <ul>
+                    <li> <a href="index.html">Accueil</a></li>
+                    <li> <a href="HTML/profil.html">Profil</a></li>
+                    <li> <a href="HTML/contact.html">contact</a></li>
+                </ul>
+            </nav>
+
+            <div class="authButtons">
+                <button id="btnLogin">Se connecter</button>
+                <button id="btnRegister">S'inscrire</button>
+            </div>
 
 
-//  Récupère ces infos dans ton dashboard Supabase (URL + publishable/anon key)
-const SUPABASE_URL = "https://xrccrsglxkleztuejmyq.supabase.co";
-const SUPABASE_KEY = "sb_publishable_ebITuTSidos8RbxDczmg6A_keoLyX9D";
+        </header>
 
-//  Client Supabase
-const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
+        <div class="layout">
 
-// Récupération des boutons
-const BtnLogin = document.getElementById("btnLogin");
-const BtnRegister = document.getElementById("btnRegister");
+            <nav class="sideMenu">
+                <ul>
+                    <li><a href="#">Menu 1</a></li>
+                    <li><a href="#">Menu 2</a></li>
+                    <li><a href="#">Menu 3</a></li>
+                </ul>
+            </nav>
 
-//  Récupération des conteneurs de formulaires
-const LoginContainer = document.getElementById("loginFormContainer");
-const RegisterContainer = document.getElementById("registerFormContainer");
+            <main class="content">
+                <h2>Bienvenue sur le site d'essai</h2>
+                <p>Tu obtiendras les outils pour connecter ton site internet sur Github à ta base de données sur Supabase</p>
+
+                <div id="loginFormContainer" class="formContainer hidden">
+                    <h2>Connexion</h2>
+                    <form id="loginForm">
+                        <div class="formGroup">
+                            <label>Email : </label>
+                            <input type="email" id="loginEmail">
+                        </div>
+
+                        <div class="formGroup">
+                            <label>Mot de passe</label>
+                            <input type="password" id="loginPassword">
+                        </div>
+
+                        <div id="loginError" class="errorMessage"></div>
+
+                        <button type="submit">Se connecter</button>
+                    </form>
+                </div>
+
+                <div id="registerFormContainer" class="formContainer hidden">
+                    <h2>S'inscrire</h2>
+                    <form id="registerForm">
+
+                        <div class="formGroup">
+                            <label>Email : </label>
+                            <input type="email" id="registerEmail">
+                        </div>
+                        
+                        <div class="formGroup">
+                            <label>Mot de passe : </label>
+                            <input type="password" id="registerPassword">
+                        </div>
+
+                        <div class="formGroup">
+                            <label>Prémom(s) : </label>
+                            <input type="text" id="registerPrenom">
+                        </div>
+
+                        <div class="formGroup">
+                            <label>Nom(s) : </label>
+                            <input type="text" id="registerNom">
+                        </div>                        
+
+                        <div id="registerError" class="errorMessage"></div>
+
+                        <button type="submit">S'inscrire</button>
+                    </form>
+
+                </div>
 
 
-//  Récupération des données
-const LoginForm = document.getElementById("loginForm");
-const RegisterForm = document.getElementById("registerForm");
-
-//  Récupération des erreurs
-const LoginError = document.getElementById("loginError");
-const RegisterError = document.getElementById("registerError")
-
-
-//Champs formulaire de connexion
-const LoginEmail = document.getElementById("loginEmail");
-const LoginPassword = document.getElementById("loginPassword");
 
 
 
-//Champs du formulaire d'inscription
-const RegisterEmail = document.getElementById("registerEmail");
+            </main>
+        </div>
+
+        <footer class="siteFooter">
+            <p>&copy; 2026 - Yanick-Romuald BOYOGUENO</p>
+        </footer>
+
+
+        <script type="module" src="JS/appSupabase.js"></script>
+
+    </body>
+
+
+
+</html>const RegisterEmail = document.getElementById("registerEmail");
 const RegisterPassword = document.getElementById("registerPassword");
 const RegisterPrenom = document.getElementById("registerPrenom");
 const RegisterNom = document.getElementById("registerNom");
