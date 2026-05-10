@@ -85,7 +85,7 @@ function validatePassword (password) {
     );
 }
 
-
+console.log("Tentative inscription", Email, Prenom, Nom);
 
 //Contrôle des données du formulaire d'inscription
 RegisterForm.addEventListener("submit", async (event) => {
@@ -129,7 +129,7 @@ const { data, error } = await supabase.auth.signUp({
         RegisterError.textContent = error.message;
         return;
     }
-
+console.log("Réponse Supabase", data, error);
 
 //Enregistrer les données en chaîne de caractères pour les sauvegarder sur Localstorage     
 //    localStorage.setItem("user", JSON.stringify(user));
