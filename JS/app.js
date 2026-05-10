@@ -1,7 +1,13 @@
-//Identifiants de test
-const valideEmail = "test@csf.bc.ca";
-const validePassword = "Test@123";
+//Importation de Supabase
+import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
 
+
+//  Récupère ces infos dans ton dashboard Supabase (URL + publishable/anon key)
+const SUPABASE_URL = "https://xrccrsglxkleztuejmyq.supabase.co";
+const SUPABASE_KEY = "sb_publishable_ebITuTSidos8RbxDczmg6A_keoLyX9D";
+
+//  Client Supabase
+const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 
 // Récupération des boutons
 const BtnLogin = document.getElementById("btnLogin");
@@ -30,6 +36,8 @@ const LoginPassword = document.getElementById("loginPassword");
 //Champs du formulaire d'inscription
 const RegisterEmail = document.getElementById("registerEmail");
 const RegisterPassword = document.getElementById("registerPassword");
+const RegisterPrenom = document.getElementById("registerPrenom");
+const RegisterNom = document.getElementById("registerNom");
 
 
 //  Quand on clique sur "Se connecter", on fait apparître le formulaire
@@ -56,6 +64,9 @@ function validateEmail(email) {
 }
 
 
+
+
+
 // Fonction de validation du mot de passe
 function validatePassword (password) {
     const miniLength = /.{6,}/;
@@ -77,28 +88,58 @@ function validatePassword (password) {
 
 
 //Contrôle des données du formulaire d'inscription
-RegisterForm.addEventListener("submit", (event) => {
+RegisterForm.addEventListener("submit", async (event) => {
     event.preventDefault();     //Empêche l'envoi automatique du formulaire
 
-    //  Récupération des valeurs des formulaires
-    const email = document.getElementById("registerEmail").value;
-    const password = document.getElementById("registerPassword").value;
+//  Récupération des valeurs des formulaires et création de la variable JSON
+    const Email = RegisterEmail.value.trim();
+    const Password = RegisterPassword.value;
+    const Prenom = RegisterPrenom.valuetrim();
+    const Nom = RegisterNom.valuetrim();
+
+
     
     //  Vérification de l'email
-    if (!validateEmail(email)) {
+    if (!validateEmail(Email)) {
         RegisterError.textContent = "Adresse email invalide.";
         return;
     }
 
     //Vérification mot de passe
-    if (!validatePassword(password)) {
-        registerError.textContent = "Le mot de passe doit contenir au moins 6 caractères, une minuscule, une majuscule, un chiffre et un caractère spécial.";
+    if (!validatePassword(Password)) {
+        RegisterError.textContent = "Le mot de passe doit contenir au moins 6 caractères, une minuscule, une majuscule, un chiffre et un caractère spécial.";
+        return;
+    }
+    RegisterError.textContent ="";
+
+
+//  Inscription Supabase
+    const {data, error} = await supabase.auth.singUp({
+        email,
+        password,
+        Option : {
+            data : {
+                prenom,
+                nom,
+            }
+        }
+    });
+
+    if (error) {
+        RegisterError.textContent = error.message;
         return;
     }
 
-    //Si tout est ok!!!
+
+//Enregistrer les données en chaîne de caractères pour les sauvegarder sur Localstorage     
+//    localStorage.setItem("user", JSON.stringify(user));
+
+
+//  Affichage de la page de connexion
     RegisterError.textContent = "";
-    alert("Le formulaire d'inscription est valide et prêt à l'envoi");
+    LoginContainer.classList.remove("hidden");
+    RegisterContainer.classList.add("hidden");
+
 }
 
 )
@@ -110,8 +151,11 @@ RegisterForm.addEventListener("submit", (event) => {
 LoginForm.addEventListener("submit", (event) => {
     event.preventDefault();
     //  Récupération des valeurs des formulaires
-    const email = document.getElementById("loginEmail").value;
-    const password = document.getElementById("loginPassword").value;
+    const email = LoginEmail.value;
+    const password = LoginPassword.value;
+
+//  Récupération de la constante qui garde l'identifiant    
+    const storedUser = JSON.parse(localStorage.getItem("user"));
 
         //  Vérification de l'email
     if (!validateEmail(email)) {
@@ -126,7 +170,7 @@ LoginForm.addEventListener("submit", (event) => {
     }
 
 
-    if (email == valideEmail && password == validePassword) {
+    if (email == storedUser.email && password == storedUser.password) {
         LoginError.textContent = "";
         window.location.href = "HTML/profil.html";
     }else {
@@ -135,9 +179,3 @@ LoginForm.addEventListener("submit", (event) => {
 
 }
 )
-
-
-
-
-
-
