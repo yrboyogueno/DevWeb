@@ -1,0 +1,176 @@
+/* Style global */
+
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f5f5f5;
+}
+
+
+/* Entête */
+
+.siteHeader {
+    background: #1e88e5;
+    color: white;
+    padding: 10px 20px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+
+.authButtons button {
+    margin-left: 10px;
+    padding: 8px 12px;
+    /*border: none;*/
+    /*background: #ffffff;*/
+    color: #1e88e5;
+    /*border-radius: 4px;*/
+    cursor: pointer;
+    font-weight: bold;
+}
+
+
+.authButtons button:hover {
+    background: #e3f2fd;
+}
+
+
+
+.formGroup {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+.formGroup label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.formGroup input {
+    padding: 8px;
+    font-size: 14px;
+}
+
+form button {
+    padding: 10px;
+    background: #1e88e5;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+
+form button:hover {
+    background: #1565c0;
+}
+
+.errorMessage {
+    color: red;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.siteHeader h1 {
+    margin: 0;
+    text-align: center;
+}
+
+/* Menu du haut */
+
+.topMenu ul {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0 0 0;
+    display: flex;
+    gap: 15px;
+}
+
+.topMenu a {
+    color: white;
+    text-decoration: none;
+}
+
+.topMenu a:hover {
+    text-decoration: underline;
+}
+
+
+/* Mise en page principale */
+
+
+.hidden {
+    display: none;
+}
+
+.formContainer {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    width: 350px;
+}
+
+
+
+.layout {
+    display: flex;
+    min-height: 80vh;
+}
+
+
+/* Menu de gauche */
+
+.sideMenu {
+    width: 200px;
+    background: #eeeeee;
+    padding: 15px;
+}
+
+.sideMenu ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sideMenu li {
+    margin-bottom: 10px;
+}
+
+
+.sideMenu a {
+    text-decoration: none;
+    color: #333;
+}
+
+.sideMenu a:hover {
+    text-decoration: underline;
+}
+
+
+/* contenu central */
+
+.content {
+    flex: 1;
+    padding: 20px;
+    background: white;
+}
+
+
+
+/* Pied de page */
+
+
+.siteFooter {
+    background: #1e88e5;
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
+
+
