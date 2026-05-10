@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <title>Accueil </title>
+        <link rel="stylesheet" href="CSS/styles.css">
+    </head>
+
+    <body>
+
+        <header class="siteHeader">
+            <h1>Mon site d'authentification</h1>
+            <nav class="topMenu">
+                <ul>
+                    <li> <a href="index.html">Accueil</a></li>
+                    <li> <a href="HTML/profil.html">Profil</a></li>
+                    <li> <a href="HTML/contact.html">contact</a></li>
+                </ul>
+            </nav>
+
+            <div class="authButtons">
+                <button id="btnLogin">Se connecter</button>
+                <button id="btnRegister">S'inscrire</button>
+            </div>
+
+
+        </header>
+
+        <div class="layout">
+
+            <nav class="sideMenu">
+                <ul>
+                    <li><a href="#">Menu 1</a></li>
+                    <li><a href="#">Menu 2</a></li>
+                    <li><a href="#">Menu 3</a></li>
+                </ul>
+            </nav>
+
+            <main class="content">
+                <h2>Bienvenue sur le site d'essai</h2>
+                <p>Tu obtiendras les outils pour connecter ton site internet sur Github à ta base de données sur Supabase</p>
+
+                <div id="loginFormContainer" class="formContainer hidden">
+                    <h2>Connexion</h2>
+                    <form id="loginForm">
+                        <div class="formGroup">
+                            <label>Email : </label>
+                            <input type="email" id="loginEmail">
+                        </div>
+
+                        <div class="formGroup">
+                            <label>Mot de passe</label>
+                            <input type="password" id="loginPassword">
+                        </div>
+
+                        <div id="loginError" class="errorMessage"></div>
+
+                        <button type="submit">Se connecter</button>
+                    </form>
+                </div>
+
+                <div id="registerFormContainer" class="formContainer hidden">
+                    <h2>S'inscrire</h2>
+                    <form id="registerForm">
+
+                        <div class="formGroup">
+                            <label>Email : </label>
+                            <input type="email" id="registerEmail">
+                        </div>
+                        
+                        <div class="formGroup">
+                            <label>Mot de passe : </label>
+                            <input type="password" id="registerPassword">
+                        </div>
+
+                        <div class="formGroup">
+                            <label>Prémom(s) : </label>
+                            <input type="text" id="registerPrenom">
+                        </div>
+
+                        <div class="formGroup">
+                            <label>Nom(s) : </label>
+                            <input type="text" id="registerNom">
+                        </div>                        
+
+                        <div id="registerError" class="errorMessage"></div>
+
+                        <button type="submit">S'inscrire</button>
+                    </form>
+
+                </div>
+
+
+
+
+
+            </main>
+        </div>
+
+        <footer class="siteFooter">
+            <p>&copy; 2026 - Yanick-Romuald BOYOGUENO</p>
+        </footer>
+
+
+        <script src="JS/appSupabase.js"></script>
+
+    </body>
+
+
+
+</html>
