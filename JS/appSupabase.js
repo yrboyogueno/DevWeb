@@ -114,16 +114,16 @@ RegisterForm.addEventListener("submit", async (event) => {
 
 
 //  Inscription Supabase
-    const {data, error} = await supabase.auth.signUp({
-        Email,
-        Password,
-        options : {
-            data : {
-                prenom,
-                nom,
-            }
+const { data, error } = await supabase.auth.signUp({
+    email: Email,
+    password: Password,
+    options: {
+        data: {
+            prenom: Prenom,
+            nom: Nom
         }
-    });
+    }
+});
 
     if (error) {
         RegisterError.textContent = error.message;
