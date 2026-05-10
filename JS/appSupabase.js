@@ -1,3 +1,13 @@
+//Importation de Supabase
+import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
+
+
+//  Récupère ces infos dans ton dashboard Supabase (URL + publishable/anon key)
+const SUPABASE_URL = "https://xrccrsglxkleztuejmyq.supabase.co";
+const SUPABASE_KEY = "sb_publishable_ebITuTSidos8RbxDczmg6A_keoLyX9D";
+
+//  Client Supabase
+const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 
 // Récupération des boutons
 const BtnLogin = document.getElementById("btnLogin");
@@ -78,14 +88,14 @@ function validatePassword (password) {
 
 
 //Contrôle des données du formulaire d'inscription
-RegisterForm.addEventListener("submit", (event) => {
+RegisterForm.addEventListener("submit", async (event) => {
     event.preventDefault();     //Empêche l'envoi automatique du formulaire
 
 //  Récupération des valeurs des formulaires et création de la variable JSON
-    Email = RegisterEmail.value;
-    Password = RegisterPassword.value;
-    Prenom = RegisterPrenom.value;
-    Nom = RegisterNom.value;
+    const Email = RegisterEmail.value.trim();
+    const Password = RegisterPassword.value;
+    const Prenom = RegisterPrenom.value.trim();
+    const Nom = RegisterNom.value.trim();
 
 
     
@@ -100,21 +110,33 @@ RegisterForm.addEventListener("submit", (event) => {
         RegisterError.textContent = "Le mot de passe doit contenir au moins 6 caractères, une minuscule, une majuscule, un chiffre et un caractère spécial.";
         return;
     }
+    RegisterError.textContent ="";
 
-//  Transformation en données JSON
-    const user = {
-            email : Email,
-            password : Password,
-            premom : Prenom,
-            nom : Nom,
-    }    
+
+//  Inscription Supabase
+    const {data, error} = await supabase.auth.signUp({
+        Email,
+        Password,
+        options : {
+            data : {
+                prenom,
+                nom,
+            }
+        }
+    });
+
+    if (error) {
+        RegisterError.textContent = error.message;
+        return;
+    }
+
 
 //Enregistrer les données en chaîne de caractères pour les sauvegarder sur Localstorage     
-    localStorage.setItem("user", JSON.stringify(user));
+//    localStorage.setItem("user", JSON.stringify(user));
 
 
-    RegisterError.textContent ="";
 //  Affichage de la page de connexion
+    RegisterError.textContent = "";
     LoginContainer.classList.remove("hidden");
     RegisterContainer.classList.add("hidden");
 
